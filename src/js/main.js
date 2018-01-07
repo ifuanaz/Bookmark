@@ -27,6 +27,7 @@ $formCreate.submit(function(event) {
             function(data) {
                 arrayBookmarks = data.bookmarks.map(obj => {return obj});
                 buildContent(arrayBookmarks, $content);
+                makeFirstLiActive($listCategories);
                 $formCreate.find('input[type="text"]').val('');
             }
         );
@@ -78,16 +79,28 @@ function save(id) {
         link = form.find('input[name="link"]').val();
 
     $.put('app/bookmarks.php', {id: id, name: name, link: link, action: 'edit'}, function () {
-        for (let currentBookmark of arrayBookmarks) {
-            if(currentBookmark.id == id) {
-                currentBookmark.name = name;
-                currentBookmark.link = link;
-
-                buildContent(arrayBookmarks, $content);
-                makeFirstLiActive($listCategories);
-                $('.js-edit-form').remove();
+        arrayBookmarks = arrayBookmarks.filter(obj => {
+            if(obj.id == id) {
+                obj.name = name;
+                obj.link = link;
             }
-        }
+            return obj;
+        });
+
+        buildContent(arrayBookmarks, $content);
+        makeFirstLiActive($listCategories);
+        $('.js-edit-form').remove();
+
+        // for (let currentBookmark of arrayBookmarks) {
+        //     if(currentBookmark.id == id) {
+        //         currentBookmark.name = name;
+        //         currentBookmark.link = link;
+        //
+        //         buildContent(arrayBookmarks, $content);
+        //         makeFirstLiActive($listCategories);
+        //         $('.js-edit-form').remove();
+        //     }
+        // }
     });
 };
 
