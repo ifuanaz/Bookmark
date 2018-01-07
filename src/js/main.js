@@ -90,17 +90,6 @@ function save(id) {
         buildContent(arrayBookmarks, $content);
         makeFirstLiActive($listCategories);
         $('.js-edit-form').remove();
-
-        // for (let currentBookmark of arrayBookmarks) {
-        //     if(currentBookmark.id == id) {
-        //         currentBookmark.name = name;
-        //         currentBookmark.link = link;
-        //
-        //         buildContent(arrayBookmarks, $content);
-        //         makeFirstLiActive($listCategories);
-        //         $('.js-edit-form').remove();
-        //     }
-        // }
     });
 };
 
