@@ -1,4 +1,4 @@
-function buildContent(data, content) {
+function templateBookmarks(data, content) {
     let output = '';
 
     for(let item of data) {
@@ -12,10 +12,10 @@ function buildContent(data, content) {
                     </div>
 
                     <div>
-                        <button type="button" class="btn btn-primary" onclick="edit(${item.id})">
+                        <button type="button" class="btn btn-primary" onclick="dom.onEditBookmark(${item.id})">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button type="button" class="btn btn-danger" onclick="remove(${item.id})">
+                        <button type="button" class="btn btn-danger" onclick="dom.onRemoveBookmark(${item.id})">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </div>
@@ -28,15 +28,15 @@ function buildContent(data, content) {
         content.html(output);
     }
     else {
-        content.html('Закладок не ісує!');
+        content.html('<div class="alert alert-danger">Закладок не існує!</div>');
     }
-}
+};
 
 
-function buildCategories(data, content) {
+function templateCategories(data, content) {
     let output = `
         <li class="list-group-item active" data-id="all">
-            <button type="button" class="btn btn-link" onclick="sortByCategories('all')">
+            <button type="button" class="btn btn-link" onclick="dom.sortByCategories('all')">
                 Всі категорії
             </button>
         </li>`;
@@ -44,7 +44,7 @@ function buildCategories(data, content) {
     for(let item of data) {
         output += `
             <li class="list-group-item" data-id="${item.id}">
-                <button type="button" class="btn btn-link" onclick="sortByCategories(${item.id})">
+                <button type="button" class="btn btn-link" onclick="dom.sortByCategories(${item.id})">
                     ${item.name}
                 </button>
             </li>`;
@@ -54,7 +54,7 @@ function buildCategories(data, content) {
 }
 
 
-function buildSelectCategories(data, content) {
+function templateSelectCategories(data, content) {
     let output = '';
 
     for (let item of data) {
@@ -65,7 +65,7 @@ function buildSelectCategories(data, content) {
 }
 
 
-function buildEditForm(obj, content) {
+function templateEditForm(obj, content) {
     let output = `
         <form class="edit-form js-edit-form">
             <div class="form-group">
@@ -74,8 +74,8 @@ function buildEditForm(obj, content) {
             <div class="form-group">
                 <input type="text" class="form-control" value="${obj.link}" name="link" placeholder="Силка закладки">
             </div>
-            <button type="button" class="btn btn-primary" onclick="save(${obj.id})">Зберегти</button>
-            <button type="button" class="btn btn-primary" onclick="cancel()">Відмінити</button>
+            <button type="button" class="btn btn-primary" onclick="dom.onSave(this, ${obj.id})">Зберегти</button>
+            <button type="button" class="btn btn-primary" onclick="dom.onCancel()">Відмінити</button>
         </form>`;
 
     content.append(output);

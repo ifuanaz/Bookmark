@@ -22,12 +22,12 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="form-group">
-                                <input type="text" id="search" class="form-control" name="" placeholder="Пошук">
+                                <input type="text" onkeyup="dom.searchBookmarks(this)" class="form-control" placeholder="Пошук">
                             </div>
                         </div>
                     </div>
                     <hr>
-                    <div id="content" class="list-group">Загрузка...</div>
+                    <div id="content-bookmarks" class="list-group">Загрузка...</div>
                 </div>
             </div>
             <div class="row">
@@ -57,8 +57,13 @@
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="dist/js/variables.js"></script>
-    <script src="dist/js/buildDOM.js"></script>
-    <script src="dist/js/search.js"></script>
-    <script src="dist/js/main.js"></script>
+    <script src="dist/js/templates.js" charset="utf-8"></script>
+    <script src="dist/js/Dom.js" charset="utf-8"></script>
+    <script src="dist/js/Bookmark.js" charset="utf-8"></script>
+    <script src="dist/js/Category.js" charset="utf-8"></script>
+
+    <!-- <script src="dist/js/buildDOM.js"></script> -->
+    <!-- <script src="dist/js/search.js"></script> -->
+    <!-- <script src="dist/js/main.js"></script> -->
 </body>
 </html>

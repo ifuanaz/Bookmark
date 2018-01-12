@@ -1,10 +1,10 @@
 'use strict';
 
-var $content = $('#content'),
+var $contentBookmarks = $('#content-bookmarks'),
     $formCreate = $('#form-create'),
     $listCategories = $('#list-categories'),
-    $selectCategories = $('#select-categories'),
-    $search = $('#search');
+    $selectCategories = $('#select-categories');
+// $search = $('#search');
 
-var arrayBookmarks = [],
-    arrayCategories = [];
+// let arrayBookmarks = [],
+//     arrayCategories = [];
