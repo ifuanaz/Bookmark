@@ -3,15 +3,20 @@
 let Dom = function() {
     this.title = 'Dom';
     this.copyright = '2018';
+
+    this.$formCreate = $('#form-create');
+    this.$contentBookmarks = $('#content-bookmarks');
+    this.$listCategories = $('#list-categories');
+    this.$selectCategories = $('#select-categories');
 }
 
 Dom.prototype.getDomBookmarks = function(data) {
-    templateBookmarks(data, $contentBookmarks);
+    templateBookmarks(data, dom.$contentBookmarks);
 };
 
 Dom.prototype.getDomCategories = function(data) {
-    templateCategories(data, $listCategories);
-    templateSelectCategories(data, $selectCategories);
+    templateCategories(data, dom.$listCategories);
+    templateSelectCategories(data, dom.$selectCategories);
 };
 
 Dom.prototype.makeFirstLiActive = function () {
