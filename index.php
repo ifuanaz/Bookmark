@@ -56,14 +56,9 @@
     </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="dist/js/variables.js"></script>
     <script src="dist/js/templates.js" charset="utf-8"></script>
     <script src="dist/js/Dom.js" charset="utf-8"></script>
     <script src="dist/js/Bookmark.js" charset="utf-8"></script>
     <script src="dist/js/Category.js" charset="utf-8"></script>
-
-    <!-- <script src="dist/js/buildDOM.js"></script> -->
-    <!-- <script src="dist/js/search.js"></script> -->
-    <!-- <script src="dist/js/main.js"></script> -->
 </body>
 </html>

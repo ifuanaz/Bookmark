@@ -20,11 +20,30 @@ Dom.prototype.getDomCategories = function(data) {
 };
 
 Dom.prototype.makeFirstLiActive = function () {
-    $listCategories.find('li').removeClass('active');
-    $listCategories.find('li:first-child').addClass('active');
+    dom.$listCategories.find('li').removeClass('active');
+    dom.$listCategories.find('li:first-child').addClass('active');
 };
 
 let dom = new Dom();
+
+dom.$formCreate.submit(function(event) {
+    event.preventDefault();
+    let form = $(this);
+    let name = form.find('input[name="name"]').val(),
+        link = form.find('input[name="link"]').val(),
+        categoryId = $(this).find('#select-categories option:checked').val();
+
+    if(name == '' || link == '') {
+        alert('Заповніть всі поля!');
+    }
+    else {
+        dom.classBookmark.prototype.createBookmark(
+            {name: name, link: link, categoryid: categoryId, action: 'add'}
+        )
+        $formCreate.find('input[type="text"]').val('');
+        dom.makeFirstLiActive();
+    }
+});
 
 dom.onRemoveBookmark = function(id) {
     dom.classBookmark.prototype.removeBookmark({id: id, action: 'delete'});
@@ -79,7 +98,7 @@ dom.sortByCategories = function(id) {
     }
 
     // add active class
-    $listCategories.find('li').each(function(item) {
+    dom.$listCategories.find('li').each(function(item) {
         $(this).removeClass('active');
         let dataID = $(this).attr('data-id');
         if(dataID == id) {
@@ -87,22 +106,3 @@ dom.sortByCategories = function(id) {
         }
     });
 }
-
-$formCreate.submit(function(event) {
-    event.preventDefault();
-    let form = $(this);
-    let name = form.find('input[name="name"]').val(),
-        link = form.find('input[name="link"]').val(),
-        categoryId = $(this).find('#select-categories option:checked').val();
-
-    if(name == '' || link == '') {
-        alert('Заповніть всі поля!');
-    }
-    else {
-        dom.classBookmark.prototype.createBookmark(
-            {name: name, link: link, categoryid: categoryId, action: 'add'}
-        )
-        $formCreate.find('input[type="text"]').val('');
-        dom.makeFirstLiActive();
-    }
-});
