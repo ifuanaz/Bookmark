@@ -33,11 +33,11 @@ dom.$formCreate.submit(function (event) {
         link = form.find('input[name="link"]').val(),
         categoryId = $(this).find('#select-categories option:checked').val();
 
-    if (name == '' || link == '') {
+    if (name === '' || link === '') {
         alert('Заповніть всі поля!');
     } else {
         dom.classBookmark.prototype.createBookmark({ name: name, link: link, categoryid: categoryId, action: 'add' });
-        $formCreate.find('input[type="text"]').val('');
+        dom.$formCreate.find('input[type="text"]').val('');
         dom.makeFirstLiActive();
     }
 });
@@ -52,9 +52,10 @@ dom.onEditBookmark = function (id) {
     var block = void 0;
 
     dom.classBookmark.prototype.getBookmarkById(id).then(function (obj) {
+        id = id.toString();
         $('.js-bookmark').each(function () {
             var index = $(this).attr('data-index');
-            if (index == id) {
+            if (index === id) {
                 block = $(this);
             }
         });
@@ -83,7 +84,8 @@ dom.searchBookmarks = function (input) {
 };
 
 dom.sortByCategories = function (id) {
-    if (id == 'all') {
+    id = id.toString();
+    if (id === 'all') {
         dom.classBookmark.prototype.getAllBookmarks();
     } else {
         dom.classBookmark.prototype.getBookmarksByCategoryId(id);
@@ -93,7 +95,7 @@ dom.sortByCategories = function (id) {
     dom.$listCategories.find('li').each(function (item) {
         $(this).removeClass('active');
         var dataID = $(this).attr('data-id');
-        if (dataID == id) {
+        if (dataID === id) {
             $(this).addClass('active');
         }
     });

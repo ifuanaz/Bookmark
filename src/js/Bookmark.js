@@ -43,9 +43,10 @@ Bookmark.prototype.saveBookmark = function (options) {
 };
 
 Bookmark.prototype.getBookmarksByCategoryId = function(id) {
+    id = id.toString();
     let bookmarks = [];
     $.get(this.static.URLS.FETCH, function(data) {
-        bookmarks = data.bookmarks.filter(obj => obj.categoryid == id);
+        bookmarks = data.bookmarks.filter(obj => obj.categoryid === id);
         bookmark.getDomBookmarks(bookmarks);
     });
 };
@@ -60,9 +61,10 @@ Bookmark.prototype.searchBookmarks = function(val) {
 
 Bookmark.prototype.getBookmarkById = function(id) {
     return new Promise(resolve => {
+        id = id.toString();
         let bookmark;
         $.get(this.static.URLS.FETCH, function(data) {
-            bookmark = data.bookmarks.find(obj => obj.id == id);
+            bookmark = data.bookmarks.find(obj => obj.id === id);
             resolve(bookmark);
         });
     });

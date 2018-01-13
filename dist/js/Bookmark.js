@@ -45,10 +45,11 @@ Bookmark.prototype.saveBookmark = function (options) {
 };
 
 Bookmark.prototype.getBookmarksByCategoryId = function (id) {
+    id = id.toString();
     var bookmarks = [];
     $.get(this.static.URLS.FETCH, function (data) {
         bookmarks = data.bookmarks.filter(function (obj) {
-            return obj.categoryid == id;
+            return obj.categoryid === id;
         });
         bookmark.getDomBookmarks(bookmarks);
     });
@@ -68,10 +69,11 @@ Bookmark.prototype.getBookmarkById = function (id) {
     var _this = this;
 
     return new Promise(function (resolve) {
+        id = id.toString();
         var bookmark = void 0;
         $.get(_this.static.URLS.FETCH, function (data) {
             bookmark = data.bookmarks.find(function (obj) {
-                return obj.id == id;
+                return obj.id === id;
             });
             resolve(bookmark);
         });
